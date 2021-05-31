@@ -18,8 +18,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>超级管理员</title>
 
-  <script src="../../../static/lib/layui/layui.js"></script>
-  <link rel="stylesheet" href="../../../static/lib/layui/css/layui.css">
+  <script src="../../static/lib/layui/layui.js"></script>
+  <link rel="stylesheet" href="../../static/lib/layui/css/layui.css">
 
   <script>
     layui.layui.use(['element'], function(){
