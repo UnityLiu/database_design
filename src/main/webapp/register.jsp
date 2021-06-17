@@ -28,7 +28,7 @@
             // 执行一个laydate实例
             let laydate = layui.laydate;
             laydate.render({
-                elem: '#ageDate', //指定元素
+                elem: '#employee_born_date', //指定元素
                 value:'2001-01-01',
                 position:'fixed'
             });
@@ -38,8 +38,8 @@
             location.assign("login.jsp");
         }
         function checkPassword(){
-            let password01 = document.getElementById("userPassword").value;
-            let password02 = document.getElementById("userPassword01").value;
+            let password01 = document.getElementById("employee_password").value;
+            let password02 = document.getElementById("employee_password_repeat").value;
             if(password01 == password02){
                 return true;
             }else{
@@ -95,7 +95,7 @@
                         "verCode":verCode
                     },
                     function (data,status){
-                        if(data == "false"){
+                        if(data == "true"){
                             alert("验证码错误");
                         }else{
                             //提交注册表单
@@ -164,47 +164,51 @@
 <div class="layui-row" style="text-align: center;">
     <div class="layui-col-md6 layui-card">
         <div class="layui-card-header layui-anim layui-anim-down" style="font-size: large;">
-            用户注册
-            
+            员工注册
+
         </div>
         <div class="layui-card-body">
             <form id = "mainForm" class="layui-form">
                 <div class="layui-form-item">
+                    <label class="layui-form-label">仓库编号<i class="layui-icon layui-icon-username"></i></label>
+                    <div class="layui-input-block">
+                        <input type="text" id = "warehouse_id" name="warehouse_id" class="layui-input layui-anim layui-anim-scale">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">姓&nbsp&nbsp&nbsp&nbsp名<i class="layui-icon layui-icon-face-smile-fine"></i></label>
                     <div class="layui-input-block">
-                        <input type="text" id = "userTheName" name="userTheName" class="layui-input layui-anim layui-anim-scale">
+                        <input type="text" id = "employee_name" name="employee_name" class="layui-input layui-anim layui-anim-scale">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">性&nbsp&nbsp&nbsp&nbsp别<i class="layui-icon layui-icon-male"></i></label>
                     <div class="layui-input-block">
-                        <input type="radio" name="userSex" value="man" title="男">
-                        <input type="radio" name="userSex" value="woman" title="女" checked>
-                        <input type="radio" name="userSex" value="" title="中性" disabled>
+                        <input type="radio" name="employee_gender" value="男" title="男">
+                        <input type="radio" name="employee_gender" value="女" title="女" checked>
+                        <input type="radio" name="employee_gender" value="" title="中性" disabled>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">出生日期<i class="layui-icon layui-icon-time"></i></label>
                     <div class="layui-input-block">
-                        <input type="text" name="bornDate" class="layui-input" id="ageDate" placeholder="yyyy年MM月dd日">
+                        <input type="text" name="employee_born_date" class="layui-input" id="employee_born_date" placeholder="yyyy年MM月dd日">
                     </div>
                 </div>
                 <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
                 <div class="layui-form-item">
                     <label class="layui-form-label">职&nbsp&nbsp&nbsp&nbsp位<i class="layui-icon layui-icon-friends"></i></label>
                     <div class="layui-input-block">
-
-                        <select name="position" lay-filter="aihao">
-                            <option value="super_administrator">超级管理员</option>
-                            <option value="warehouse_administrator">仓库管理员</option>
-                            <option value="warehouse-header">仓库负责人</option>
+                        <select name="employee_position" lay-filter="aihao">
+                            <option value="仓库管理员">仓库管理员</option>
+                            <option value="仓库负责人">仓库负责人</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label" name="userName">邮&nbsp&nbsp&nbsp&nbsp箱<i class="layui-icon layui-icon-email"></i></label>
+                    <label class="layui-form-label" name="employee_account">邮&nbsp&nbsp&nbsp&nbsp箱<i class="layui-icon layui-icon-email"></i></label>
                     <div class="layui-input-block">
-                        <input type="text" name="userName" id = "EmailArea" lay-verify="email" autocomplete="off" class="layui-input layui-anim layui-anim-scale">
+                        <input type="text" name="employee_account" id = "EmailArea" lay-verify="email" autocomplete="off" class="layui-input layui-anim layui-anim-scale">
                     </div>
 
                 </div>
@@ -221,13 +225,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">密&nbsp&nbsp&nbsp&nbsp码<i class="layui-icon layui-icon-password"></i></label>
                     <div class="layui-input-block">
-                        <input type="password" id = "userPassword" name="userPassword" class="layui-input layui-anim layui-anim-scale">
+                        <input type="password" id = "employee_password" name="employee_password" class="layui-input layui-anim layui-anim-scale">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">再次输入<i class="layui-icon layui-icon-password"></i></label>
                     <div class="layui-input-block">
-                        <input type="password" id = "userPassword01" name="password02" class="layui-input layui-anim layui-anim-scale" onkeyup="checkPassword()">
+                        <input type="password" id = "employee_password_repeat" name="employee_password_repeat" class="layui-input layui-anim layui-anim-scale" onkeyup="checkPassword()">
                     </div>
                 </div>
                 <div class="layui-form-item">

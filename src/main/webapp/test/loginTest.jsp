@@ -65,9 +65,9 @@
                   class="layui-icon layui-icon-friends"></i></label>
           <div class="layui-input-block">
             <select id = "selectUser" name="position" lay-filter="UserPosition">
-              <option value="super_administrator">超级管理员</option>
-              <option value="warehouse_administrator">仓库管理员</option>
-              <option value="warehouse-header">仓库负责人</option>
+              <option value="超级管理员">超级管理员</option>
+              <option value="仓库管理员">仓库管理员</option>
+              <option value="仓库负责人">仓库负责人</option>
             </select>
           </div>
         </div>

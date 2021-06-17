@@ -25,6 +25,18 @@ public class LoginServices extends HttpServlet {
 //        System.out.println(req.getParameter("userPassword"));
 //        System.out.println(req.getParameter("position"));
         req.setCharacterEncoding("utf8");
+
+        //打印传来的参数map中的key以及value
+        for(String key:req.getParameterMap().keySet()){
+            System.out.println("key:"+key);
+        }
+
+        for(String[] value:req.getParameterMap().values()){
+            for(String str : value){
+                System.out.println("value:"+str);
+            }
+        }
+
         boolean flag = SqlServerUtils.selectUser(req.getParameterMap());
 
         resp.setContentType("text/html");

@@ -23,15 +23,16 @@ public class RegisterServices extends HttpServlet {
         req.setCharacterEncoding("utf8");
 
 
-          for(String key:req.getParameterMap().keySet()){
-              System.out.println("key:"+key);
-          }
+        for(String key:req.getParameterMap().keySet()){
+            System.out.println("key:"+key);
+        }
 
         for(String[] value:req.getParameterMap().values()){
             for(String str : value){
                 System.out.println("value:"+str);
             }
         }
+        //调用新增用户
         boolean flag = SqlServerUtils.addUser(req.getParameterMap());
 
 

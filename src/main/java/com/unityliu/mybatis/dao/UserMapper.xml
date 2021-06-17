@@ -3,25 +3,56 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.unityliu.mybatis.dao.UserMapper">
-    <resultMap id="UserResultMap" type="com.unityliu.pojo.UserIdentity">
-        <result column="user_name" property="userName"></result>
-        <result column="user_password" property="password"></result>
-        <result column="user_identity" property="userIdentity"></result>
-    </resultMap>
-    
+
+<!--    <resultMap id="UserResultMap" type="com.unityliu.pojo.UserIdentity">-->
+<!--        <result column="employee_account" property="employeeAccount"></result>-->
+<!--        <result column="employee_password" property="employeePassword"></result>-->
+<!--        <result column="employee_position" property="employeePosition"></result>-->
+<!--    </resultMap>-->
+
+<!--    检测用户名是否存在-->
     <select id="checkUserName" parameterType="java.lang.String" resultType="java.lang.String">
-        select user_name
-        from user_table
-        where user_name = #{str};
+        select employee_account
+        from employees_table
+        where employee_account = #{str};
     </select>
-    
-    <select id="getLoginResult" parameterType="com.unityliu.pojo.UserIdentity" resultType="com.unityliu.pojo.UserIdentity" resultMap="UserResultMap">
+
+    <!--    选择登录的员工信息-->
+    <select id="getLoginResult" parameterType="com.unityliu.pojo.UserIdentity" resultType="com.unityliu.pojo.UserIdentity">
         select *
-        from user_table
-        where user_name = #{userName};
+        from employees_table
+        where employee_account = #{employeeAccount};
     </select>
+    <!--    插入员工记录-->
     <insert id="addUser" parameterType="com.unityliu.pojo.UserIdentity">
-        insert into user_table (user_the_name,user_sex,born_date,user_name,user_password,user_identity) values (#{userTheName},#{userSex},#{bornDate},#{userName},#{password},#{userIdentity});
+        insert into employees_table (warehouse_id,employee_name,employee_gender,employee_born_date,employee_account,employee_password,employee_position) values (#{warehouseId},#{employeeName},#{employeeGender},#{employeeBornDate},#{employeeAccount},#{employeePassword},#{employeePosition});
     </insert>
-    
+
+
+    <!--    选择所有员工信息-->
+    <select id="getAllEmployees" resultType="com.unityliu.pojo.UserIdentity">
+        select *
+        from employees_table;
+    </select>
+
+
+
+    <!--    选择所有商品信息-->
+    <select id="getAllGoods" resultType="com.unityliu.pojo.Goods">
+        select *
+        from goods_table;
+    </select>
+
+    <!--    选择商品更新表信息-->
+    <select id="getAllGoodsUpdate" resultType="com.unityliu.pojo.GoodsUndate">
+        select *
+        from goods_update_table;
+    </select>
+
+    <!--    选择所有仓库信息-->
+    <select id="getAllWarehouse" resultType="com.unityliu.pojo.Warehouse">
+        select *
+        from warehouse_table;
+    </select>
+
 </mapper>

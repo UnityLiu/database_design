@@ -22,10 +22,6 @@
   <script src = "${pageContext.request.contextPath}/static/lib/layui/layui.js"></script>
   <script src = "${pageContext.request.contextPath}/static/lib/jquery-3.6.0.js"></script>
   <script language="JavaScript">
-    //注册页面重定向
-    function dispatcher(){
-      location.assign("${pageContext.request.contextPath}/register.jsp");
-    }
 
 
 
@@ -64,10 +60,10 @@
           <label class="layui-form-label">职&nbsp&nbsp&nbsp位<i
                   class="layui-icon layui-icon-friends"></i></label>
           <div class="layui-input-block">
-            <select id = "selectUser" name="position" lay-filter="UserPosition">
-              <option value="super_administrator">超级管理员</option>
-              <option value="warehouse_administrator">仓库管理员</option>
-              <option value="warehouse-header">仓库负责人</option>
+            <select id ="employee_position" name="employee_position" lay-filter="UserPosition">
+              <option value="超级管理员">超级管理员</option>
+              <option value="仓库管理员">仓库管理员</option>
+              <option value="仓库负责人">仓库负责人</option>
             </select>
           </div>
         </div>
@@ -75,7 +71,7 @@
           <label class="layui-form-label" name="userName">邮&nbsp&nbsp&nbsp&nbsp箱<i class="layui-icon layui-icon-username"></i></label>
 
           <div class="layui-input-block">
-            <input type="text" name="userName" id = "userName" class="layui-input layui-anim layui-anim-scale" >
+            <input type="text" name="employee_account" id = "employee_account" class="layui-input layui-anim layui-anim-scale" >
 
           </div>
 
@@ -86,14 +82,13 @@
           <label class="layui-form-label">密&nbsp&nbsp&nbsp&nbsp码<i
                   class="layui-icon layui-icon-password"></i></label>
           <div class="layui-input-block">
-            <input type="password" name="userPassword" id = "userPassword" class="layui-input layui-anim layui-anim-scale">
+            <input type="password" name="employee_password" id ="employee_password" class="layui-input layui-anim layui-anim-scale">
           </div>
 
         </div>
         <div class="layui-form-item">
           <div class="layui-input-block">
             <button type="button" id = "loginButton" class="layui-btn" >登录</button>
-            <button type ="button" class="layui-btn" onclick="dispatcher()">前往注册</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
           </div>
         </div>

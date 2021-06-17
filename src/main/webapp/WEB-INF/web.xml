@@ -50,7 +50,61 @@
         <servlet-name>verificationCode</servlet-name>
         <url-pattern>/getCode</url-pattern>
     </servlet-mapping>
-    
+
+
+<!--    获取数据库employees_table表中所有员工-->
+    <servlet>
+        <servlet-name>returnAllEmployeesByJson</servlet-name>
+        <servlet-class>com.unityliu.servlet.ReturnAllEmployeesByJson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>returnAllEmployeesByJson</servlet-name>
+        <url-pattern>/getAllEmployeesByJson</url-pattern>
+    </servlet-mapping>
+
+<!--    获取数据库goods_table表中所有商品-->
+    <servlet>
+        <servlet-name>returnAllGoodsByJson</servlet-name>
+        <servlet-class>com.unityliu.servlet.ReturnAllGoodsByJson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>returnAllGoodsByJson</servlet-name>
+        <url-pattern>/getAllGoodsByJson</url-pattern>
+    </servlet-mapping>
+
+<!--    获取数据库goods_update_table表中所有商品更新信息-->
+    <servlet>
+        <servlet-name>returnAllGoodsUpdateByJson</servlet-name>
+        <servlet-class>com.unityliu.servlet.ReturnAllGoodsUpdateByJson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>returnAllGoodsUpdateByJson</servlet-name>
+        <url-pattern>/getAllGoodsUpdateByJson</url-pattern>
+    </servlet-mapping>
+
+<!--    获取数据库warehouse_table表中所有仓库-->
+    <servlet>
+        <servlet-name>returnAllWarehouseByJson</servlet-name>
+        <servlet-class>com.unityliu.servlet.ReturnAllWarehouseByJson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>returnAllWarehouseByJson</servlet-name>
+        <url-pattern>/getAllWarehouseByJson</url-pattern>
+    </servlet-mapping>
+
+
+<!--    提交进货数量-->
+    <servlet>
+        <servlet-name>inGoodsNumberOfGoodsUpdate</servlet-name>
+        <servlet-class>com.unityliu.servlet.InGoodsNumberOfGoodsUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>inGoodsNumberOfGoodsUpdate</servlet-name>
+        <url-pattern>/postInGoodsNumber</url-pattern>
+    </servlet-mapping>
+
+
+<!--    过滤器目前没用到-->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>com.unityliu.filter.CharacterEncodingFilter</filter-class>
