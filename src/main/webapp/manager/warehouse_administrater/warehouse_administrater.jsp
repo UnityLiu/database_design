@@ -19,7 +19,9 @@
     <title>仓库管理员</title>
 
     <script src="${pageContext.request.contextPath}/static/lib/layui/layui.js"></script>
+    <script src="${pageContext.request.contextPath}/static/lib/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/lib/layui/css/layui.css">
+
 
     <script>
         layui.layui.use(['element'], function(){
@@ -34,12 +36,27 @@
   <li class="layui-nav-item"><a href="">仓库管理</a></li>
   <li class="layui-nav-item"><a href="">仓库负责人管理</a></li>
 </ul> -->
+<script type="text/javascript">
+
+    let employee_account = getCookie('employee_account');
+    let employee_name = getCookie('employee_name');
+    let employee_position = getCookie('employee_position');
+    let warehouse_id = getCookie('warehouse_id');
+
+    $("#warehouse_id").innerText =warehouse_id+"仓库";
+    $("#employee_position").innerText =employee_name+"您好" + employee_position;
+
+
+</script>
 <div style="margin:  0% 20% 0% 20%;height: 10%;width: 60%;background: #00F7DE;position: relative">
-    <div style="position: absolute;left: 40px;font-size: 65px">
-        a1仓库
+    <div id = "warehouse_id" style="position: absolute;left: 40px;font-size: 65px">
+
     </div>
     <div style="position: absolute;top: 40px;right: 40px">
-        <i class="layui-icon layui-icon-friends"></i>您好：仓库管理员
+        <i class="layui-icon layui-icon-friends"></i>
+        <div id = "employee_position">
+            请登录
+        </div>
         <a>退出</a>
     </div>
 </div>
@@ -75,17 +92,62 @@
                                         , { field: 'goods_kind', title: '商品种类', sort: true }
                                         , { field: 'goods_inventory', title: '库存量',  sort: true}
                                         , { field: 'goods_purchase_price', title: '单价',  sort: true}
+                                        , { field: 'right',align: 'center', toolbar: '#barDemo'}
                                     ]]
                                 });
-                                table.on('edit(demo01)',function (obj){
-                                    var value = obj.value //得到修改后的值
-                                        ,data = obj.data //得到所在行所有键值
-                                        ,field = obj.field; //得到字段
-                                    layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改值为：'+ util.escape(value));
 
+                                table.on('tool(demo01)',function (obj){
+                                    var data = obj.data;
+                                    if(obj.event === 'edit'){
+                                        // alert(JSON.stringify(data));
+                                        // alert(data.goods_id);
+                                        layer.open({
+                                            type:1
+                                            ,area: ['300px', '200px']
+                                            ,content:
+                                                '<form class="layui-form" style="margin-top: 10px;width: 280px">' +
+                                                '<div class = "layui-form-item">' +
+                                                '<label class="layui-form-label">进货数量：</label>' +
+                                                '<div class="layui-input-block">' +
+                                                '<input id = "inNumber" type="text" name="inNumber" required  lay-verify="required" placeholder="请输入数量" autocomplete="off" class="layui-input">' +
+                                                '' +
+                                                '' +
+                                                '' +
+                                                '' +
+                                                '' +
+                                                '</div>' +
+                                                '</div>'
+                                            ,title:'进货'
+                                            ,btn:['提交','关闭']
+                                            ,yes:function (index, layero){
+
+                                                $.post('url',{
+                                                    'goods_id':data.goods_id,
+                                                    'in_goods_number':$("#inNumber").val()
+
+                                                },function (data,status){
+                                                    alert(data);
+                                                });
+
+                                                //要写个ajax提交商品编号以及进货数量
+
+
+                                                alert(data.goods_id);
+                                                alert($("#inNumber").val());
+
+                                            }
+                                            ,btn2:function (index, layero){
+                                                layer.closeAll();
+                                            }
+
+                                        });
+
+                                    }
                                 });
-
                             });
+                        </script>
+                        <script type="text/html" id = "barDemo">
+                            <a class="layui-btn layui-btn-sm" lay-event="edit">进货</a>
                         </script>
                     </div>
                 </div>

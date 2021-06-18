@@ -122,11 +122,16 @@ public class MyTest {
 //        System.out.println(SqlServerUtils.getAllEmployees(paramList));
     }
 
-    public static void main(String[] args) {
+    public static void main7(String[] args) {
         JSONObject json = new JSONObject();
         json.put("data",1);
         json.put("data2",2);
         json.put("data",3);
         System.out.println(json);
+    }
+
+    public static void main(String[] args) {
+        UserIdentity employee = SqlServerUtils.getEmployeeByAccount("unityliu@qq.com");
+        System.out.println(employee);
     }
 }

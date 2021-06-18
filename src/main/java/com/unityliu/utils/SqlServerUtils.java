@@ -73,8 +73,8 @@ public class SqlServerUtils {
     }
 
     //获取所有goods_table表中所有数据
-    public static JSONObject getAllGoods(ArrayList<String> paramsList){
-        List<Goods> goods = mapper.getAllGoods();
+    public static JSONObject getAllGoods(ArrayList<String> paramsList,String warehouseId){
+        List<Goods> goods = mapper.getAllGoods(warehouseId);
         JsonUtils jsonUtils = new JsonUtils(paramsList);
         return jsonUtils.getGoodsJsons(goods);
     }
@@ -92,5 +92,11 @@ public class SqlServerUtils {
         JsonUtils jsonUtils = new JsonUtils(paramsList);
 
         return jsonUtils.getWarehouseJsons(warehouses);
+    }
+
+    //根据账户名获取用户数据
+    public static UserIdentity getEmployeeByAccount(String account){
+        UserIdentity employee = mapper.getEmployeeByAccount(account);
+        return employee;
     }
 }

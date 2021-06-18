@@ -3,6 +3,7 @@ package com.unityliu.servlet;
 import com.unityliu.utils.SqlServerUtils;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,19 @@ public class ReturnAllGoodsByJson extends HttpServlet {
         paramList.add("goods_selling_price");
         paramList.add("goods_inventory");
 
-        resp.getWriter().print(SqlServerUtils.getAllGoods(paramList));
+        String warehouseId = new String();
+
+
+        //通过cookie获取当前员工负责的仓库编号
+        for (Cookie cookie : req.getCookies()) {
+            if(cookie.getName().equals("warehouse_id")){
+                warehouseId =  cookie.getValue();
+                System.out.println(warehouseId);
+                break;
+            }
+        }
+
+        resp.getWriter().print(SqlServerUtils.getAllGoods(paramList,warehouseId));
     }
 
     @Override

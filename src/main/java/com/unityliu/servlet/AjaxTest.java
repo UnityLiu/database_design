@@ -11,8 +11,8 @@ public class AjaxTest extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("utf8");
-        resp.getWriter().print("hello ajax");
 
+        req.setAttribute("keyOne","valueOne");
 
     }
 

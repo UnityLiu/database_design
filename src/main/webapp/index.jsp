@@ -36,12 +36,56 @@
   <li class="layui-nav-item"><a href="">仓库管理</a></li>
   <li class="layui-nav-item"><a href="">仓库负责人管理</a></li>
 </ul> -->
+<script type="text/javascript">
+
+
+    function setCookie(cname,cvalue,exdays)
+    {
+        var d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname)
+    {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+
+    //获取cookie信息
+    let employee_account = getCookie('employee_account');
+    let employee_name = getCookie('employee_name');
+    let employee_position = getCookie('employee_position');
+    let warehouse_id = getCookie('warehouse_id');
+
+
+    //根据cookie信息在页面中显示用户信息
+    $(document).ready(function (){
+        $("#warehouse_id").text(warehouse_id+"仓库");
+        $("#employee_position").text(employee_name+"您好：" + employee_position);
+    });
+
+
+
+
+
+</script>
 <div style="margin:  0% 20% 0% 20%;height: 10%;width: 60%;background: #00F7DE;position: relative">
-    <div style="position: absolute;left: 40px;font-size: 65px">
-        a1仓库
+    <div id = "warehouse_id" style="position: absolute;left: 40px;font-size: 65px">
+
     </div>
-    <div style="position: absolute;top: 40px;right: 40px">
-        <i class="layui-icon layui-icon-friends"></i>您好：仓库管理员
+    <div style="position: absolute;top: 20px;right: 40px">
+        <i class="layui-icon layui-icon-friends"></i>
+        <div id = "employee_position">
+            请登录
+        </div>
         <a>退出</a>
     </div>
 </div>
@@ -73,6 +117,7 @@
                                     , page: true //开启分页
                                     , cols: [[ //表头
                                         { field: 'goods_id', title: '商品编号',  sort: true, fixed: 'left' }
+                                        ,{ field: 'warehouse_id', title: '仓库编号',  sort: true, fixed: 'left' }
                                         , { field: 'goods_name', title: '商品名称', sort: true}
                                         , { field: 'goods_kind', title: '商品种类', sort: true }
                                         , { field: 'goods_inventory', title: '库存量',  sort: true}
@@ -80,7 +125,6 @@
                                         , { field: 'right',align: 'center', toolbar: '#barDemo'}
                                     ]]
                                 });
-
                                 table.on('tool(demo01)',function (obj){
                                     var data = obj.data;
                                     if(obj.event === 'edit'){

@@ -19,13 +19,15 @@ public interface UserMapper {
     List<UserIdentity> getAllEmployees();
 
     //获取数据库goods_table表中所有商品
-    List<Goods> getAllGoods();
+    List<Goods> getAllGoods(String warehouseId);
 
     //获取数据库goods_update_table表中所有商品更新信息
     List<GoodsUndate> getAllGoodsUpdate();
 
     //获取数据库warehouse_table表中所有仓库
     List<Warehouse> getAllWarehouse();
+
+    UserIdentity getEmployeeByAccount(String account);
 
 //    void setGoodUpdateQuantity
 }

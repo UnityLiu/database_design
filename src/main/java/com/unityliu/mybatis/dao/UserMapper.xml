@@ -38,9 +38,10 @@
 
 
     <!--    选择所有商品信息-->
-    <select id="getAllGoods" resultType="com.unityliu.pojo.Goods">
+    <select id="getAllGoods" parameterType="java.lang.String" resultType="com.unityliu.pojo.Goods">
         select *
-        from goods_table;
+        from goods_table
+        where warehouse_id =#{warehouseId};
     </select>
 
     <!--    选择商品更新表信息-->
@@ -53,6 +54,12 @@
     <select id="getAllWarehouse" resultType="com.unityliu.pojo.Warehouse">
         select *
         from warehouse_table;
+    </select>
+
+    <select id="getEmployeeByAccount" parameterType="java.lang.String" resultType="com.unityliu.pojo.UserIdentity">
+        select *
+        from employees_table
+        where employee_account=#{account};
     </select>
 
 </mapper>
